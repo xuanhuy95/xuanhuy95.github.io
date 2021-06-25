@@ -1,5 +1,5 @@
 ---
-server_host: explore-app.dev.mylocal.vn
+server_host: mylocal.vn-explore
 deploy_project_dir: "/var/www/{{ server_host }}"
 
 # if run ansible-playbook with -e working_dir then set flag is_jenkins
