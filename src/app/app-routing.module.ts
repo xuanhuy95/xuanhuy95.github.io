@@ -3,7 +3,11 @@ import {RouterModule, Routes} from '@angular/router';
 import {HeroComponent} from './hero/hero.component'
 
 const routes: Routes = [
-    {path: 'heroes', component: HeroComponent}
+    {path: 'heroes', component: HeroComponent},
+    {
+        path: '**',
+        redirectTo: 'heroes'
+    }
 ];
 
 @NgModule({
