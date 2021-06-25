@@ -1,0 +1,24 @@
+---
+- name: check if "{{ deploy_project_dir }}" exists
+  become: true
+  become_user: root
+  stat: path="{{ deploy_project_dir }}"
+  register: stat_result
+
+- name: create "{{ deploy_project_dir }}"
+  when: not stat_result.stat.exists
+  become: true
+  become_user: root
+  file:
+    path: "{{ deploy_project_dir }}"
+    state: directory
+
+- name: sync from {{ dist_dir }}/build/ to {{ deploy_project_dir }}
+  become: true
+  become_user: root
+  synchronize:
+    delete: yes
+    partial: yes
+    recursive: yes
+    dest: "{{ deploy_project_dir }}"
+    src: "{{ dist_dir }}/build/"

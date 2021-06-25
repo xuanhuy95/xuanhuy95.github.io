@@ -1,0 +1,19 @@
+---
+server_host: explore-app.dev.mylocal.vn
+deploy_project_dir: "/var/www/{{ server_host }}"
+
+# if run ansible-playbook with -e working_dir then set flag is_jenkins
+is_jenkins: "{{ (working_dir is defined) and (working_dir | length > 0) }}"
+task_build_name: "{{ 'jenkins' if is_jenkins else 'local' }}.yml"
+
+# directories for building locally
+build_name: "explore_web"
+project_temp_root_dir: "/tmp/explore_web"
+temp_dir: "/tmp/explore_web/temp/"
+default_dist_dir: '/tmp/explore_web/build/'
+dist_dir: "{{ working_dir if is_jenkins else default_dist_dir }}"
+env: "development"
+
+# source code
+git_repo: "git@github.com:xuanhuy95/xuanhuy95.github.io.git"
+git_branch: master

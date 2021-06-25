@@ -1,0 +1,4 @@
+mylocal-dev-1 ansible_host=54.179.104.207 private_ip=10.0.0.10
+
+[server_hosts]
+mylocal-dev-1

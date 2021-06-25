@@ -1,0 +1,15 @@
+server {
+    listen 80;
+    server_name {{server_host}};
+    access_log /var/log/nginx/{{server_host}}.access.log;
+    error_log /var/log/nginx/{{server_host}}.error.log;
+
+    root /var/www/{{server_host}};
+    index index.html index.htm;
+
+    location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+        try_files $uri /index.html;
+    }
+}

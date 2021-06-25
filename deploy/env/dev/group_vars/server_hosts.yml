@@ -1,0 +1,19 @@
+nginx_sites:
+  merchant-app.dev.mylocal.vn:
+    root: /var/www/{{server_host}}
+    server_name: |-
+      merchant-app.dev.mylocal.vn
+    extra_opt: |-
+      client_max_body_size 0;
+      include conf.d/cors.conf;
+    location_custom: |
+      # letencrypt support
+      location /explore {
+        proxy_pass https://xuanhuy95.github.io/your_project_name;
+      }
+    forwarding_proxy: "0"
+    ssl_enabled: "1"
+    ssl_redirect: "1"
+    ssl_certificate: "/etc/letsencrypt/live/merchant-app.dev.mylocal.vn/fullchain.pem"
+    ssl_certificate_key: "/etc/letsencrypt/live/merchant-app.dev.mylocal.vn/privkey.pem"
+    ssl_trusted_certificate: "/etc/letsencrypt/live/merchant-app.dev.mylocal.vn/chain.pem"

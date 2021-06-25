@@ -1,0 +1,12 @@
+---
+- name: apply nginx sites config
+  become: true
+  become_user: root
+  template:
+    src: nginx_conf
+    dest: "{{ nginx_default_conf_dir }}/vhosts/{{ item.key }}.conf"
+    mode: 0644
+  with_dict: "{{ nginx_sites }}"
+  when: nginx_sites|length > 0
+  register: nginx_sites_confs
+  notify: reload nginx

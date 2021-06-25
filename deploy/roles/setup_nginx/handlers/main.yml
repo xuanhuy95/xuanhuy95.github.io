@@ -1,0 +1,9 @@
+- name: restart nginx
+  service: name=nginx state=restarted
+  become: true
+  become_user: root
+
+- name: reload nginx
+  shell: /app/nginx/sbin/nginx -t && /app/nginx/sbin/nginx -s reload
+  become: true
+  become_user: root
