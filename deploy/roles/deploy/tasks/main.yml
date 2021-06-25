@@ -13,7 +13,7 @@
     path: "{{ deploy_project_dir }}"
     state: directory
 
-- name: sync from {{ dist_dir }}/build/ to {{ deploy_project_dir }}
+- name: sync from {{ dist_dir }}/dist/ to {{ deploy_project_dir }}
   become: true
   become_user: root
   synchronize:
@@ -21,4 +21,4 @@
     partial: yes
     recursive: yes
     dest: "{{ deploy_project_dir }}"
-    src: "{{ dist_dir }}/build/"
+    src: "{{ dist_dir }}/dist/"
